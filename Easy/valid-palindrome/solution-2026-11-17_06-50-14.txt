@@ -1,0 +1,28 @@
+#include <cctype>
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+
+        std::string modified = "";
+        for (char c : s) {
+            if (std::isalnum(c)) {
+                modified += tolower(c);
+            }
+        }
+
+        int l = 0, r = modified.size() - 1;
+        
+        while (l < r) {
+            char left = modified[l];
+            char right = modified[r];
+            if (left != right) {
+                return false;
+            }
+            l++;
+            r--;
+        }
+
+        return true;
+    }
+};
