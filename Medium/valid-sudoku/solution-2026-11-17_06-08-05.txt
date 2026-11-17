@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        std::unordered_map<int, unordered_set<char>> rows, cols, squares;
+
+        for (int r = 0; r < board.size(); r++) {
+            for (int c =0; c < board[0].size(); c++) {
+                char ch = board[r][c];
+                int sqr = (r/3) * 3 + (c/3);
+                
+                if (ch == '.') {
+                    continue;
+                }
+
+                if (rows[r].contains(ch) || cols[c].contains(ch) || squares[sqr].contains(ch)) {
+                    return false;
+                }
+
+                rows[r].insert(ch);
+                cols[c].insert(ch);
+                squares[sqr].insert(ch);
+            }
+        }
+
+        return true;
+        
+    }
+};
