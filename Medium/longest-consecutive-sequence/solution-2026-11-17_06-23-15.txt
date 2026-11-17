@@ -1,0 +1,31 @@
+#include <algorithm>
+#include <unordered_set>
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
+        std::unordered_set<int> setNums(nums.begin(), nums.end());
+        std::unordered_set<int> visit;
+        int res = 0;
+
+        for (int num : nums) {
+            if (visit.contains(num)) {
+                continue;
+            }
+            
+            if (!setNums.contains(num - 1)) {
+                int cur {1};
+                int curNum {num};
+                while (setNums.contains(curNum + 1)) {
+                    cur++;
+                    curNum++;
+                }
+                res = std::max(res, cur);    
+            }
+            visit.insert(num);
+        }
+
+        return res;
+    }
+};
