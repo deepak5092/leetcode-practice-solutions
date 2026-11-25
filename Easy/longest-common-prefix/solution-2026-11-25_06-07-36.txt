@@ -1,0 +1,31 @@
+#include <limits>
+#include <algorithm>
+#include <iostream>
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+
+        int minLen = std::numeric_limits<int>::max();
+        
+        for (string s : strs) {
+            minLen = std::min(static_cast<int>(s.length()), minLen);
+        }
+
+        
+        char first;
+        string res {""};
+        char curr;
+        for (int i = 0; i < minLen; i++) {
+            first = strs[0][i];
+            for (int j = 1; j < strs.size(); j++) {
+                curr = strs[j][i];
+                if (curr != first) {
+                    return res;
+                }
+            }
+            res += first;
+        }
+        return res;
+    }
+};
