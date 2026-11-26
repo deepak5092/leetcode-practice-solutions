@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool canAliceWin(int n) {
+        int remaining {n};
+        bool turn {true}; // true for alice, false for bob
+        int curr = 10;
+
+        while (remaining >= 0) {
+            if (remaining - curr >= 0) {
+                if (turn) {
+                    turn = false;
+                } else
+                turn = true;
+                remaining -= curr;
+                curr--;
+            } else if (turn) {
+                return false;
+            } else 
+            return true;
+        }
+
+        return turn;  
+    }
+};
