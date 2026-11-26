@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int l {0};
+        int r {static_cast<int>(nums.size()) - 1};
+        int temp;
+        while (l <= r) {
+            if (nums[r] == val) {
+                r--;
+            } else if (nums[l] == val) {
+                temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+                l++;
+                r--;
+            } else
+            l++;
+        }
+
+        return l;
+    }
+};
